@@ -48,6 +48,8 @@ void Bubble_Sort3(int a[], int n) {
 	}
 }
 
+// 버블 정렬 개선 알고리즘2
+// 어떤 시점 이후 교환이 수행되지 않는다면 그보다 앞쪽 요소는 이미 정렬을 마친 상태
 void Bubble_Sort4(int a[], int n) {
 	int k = 0;
 	while (k < n - 1) {
@@ -64,6 +66,7 @@ void Bubble_Sort4(int a[], int n) {
 	}
 }
 
+// 오름차순으로 정렬되어 있나 체크해주는 함수
 int is_sorted(int a[], int n) {
 	int exchg = 0;
 	for (int i = 0; i < n - 1; i++)
