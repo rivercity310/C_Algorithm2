@@ -3,5 +3,5 @@
 
 
 int main() {
-	bsort_test();
+	selection_sort_test();
 }
