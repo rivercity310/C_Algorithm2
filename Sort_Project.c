@@ -13,11 +13,11 @@
 */
 
 typedef enum {
-	BUBBLE = 1, SELECTION, INSERTION
+	BUBBLE = 1, SELECTION, INSERTION, SHELL
 } SORT_MENU;
 
 typedef enum {
-	LINEAR = 1, BINARY
+	EXIT, LINEAR, BINARY
 } SHC_MENU;
 
 int lin_search_p(int a[], int n, int key) {
@@ -86,12 +86,25 @@ void insertion_sort_p(int a[], int n) {
 	}
 }
 
+void Shell_sort_p(int a[], int n) {
+	int i, j, h;
+	for (h = n / 2; h > 0; h /= 2) {
+		for (i = h; i < n; i++) {
+			int tmp = a[i];
+			for (j = i - h; j >= 0 && a[j] > tmp; j -= h)
+				a[j + h] = a[j];
+
+			a[j + h] = tmp;
+		}
+	}
+}
+
 int sch_menu() {
 	puts("검색을 시작합니다..");
 	puts("어떤 방법으로 검색할까요?");
 
 	int s;
-	printf("(1)선형 검색, (2)이진 검색 >> ");
+	printf("(1)선형 검색, (2)이진 검색, (0)종료 >> ");
 	scanf_s("%d", &s);
 	
 	return (SHC_MENU)s;
@@ -101,7 +114,7 @@ int sort_menu() {
 	puts("어떤 방법으로 정렬할까요?");
 	
 	int s;
-	printf("(1)버블 정렬, (2)단순 선택 정렬, (3)단순 삽입 정렬 >> ");
+	printf("(1)버블 정렬, (2)단순 선택 정렬, (3)단순 삽입 정렬, (4)셸 정렬 >> ");
 	scanf_s("%d", &s);
 
 	return (SORT_MENU)s;
@@ -122,45 +135,60 @@ void sort_project() {
 	}
 	puts("배열 입력이 완료되었습니다...");
 
-	int idx, key;
-	SHC_MENU s;
-	switch (s = sch_menu()) {
-	case LINEAR:
-	{
-		printf("검색할 값? ");
-		scanf_s("%d", &key);
-		idx = lin_search_p(x, nx, key);
-		
-		if (idx != -1) printf("x[%d] = %d\n", idx, x[idx]);
-		else puts("존재하지 않는 값이네요..");
-		break;
-	}
-	case BINARY:
-	{
-		puts("이진 검색을 하려면 먼저 배열을 정렬해야 합니다..");
+	while (1) {
+		int idx, key;
+		SHC_MENU s;
+		switch (s = sch_menu()) {
+		case EXIT:
+		{
+			puts("프로그램을 종료합니다....");
+			free(x);
+			return;
+		}
+		case LINEAR:
+		{
+			printf("검색할 값? ");
+			scanf_s("%d", &key);
+			idx = lin_search_p(x, nx, key);
 
-		SORT_MENU sm;
-		switch (sm = sort_menu()) {
-		case BUBBLE:
-			bubble_sort_p(x, nx);
-			break;
-		case SELECTION:
-			selection_sort_p(x, nx);
-			break;
-		case INSERTION:
-			insertion_sort_p(x, nx);
+			if (idx != -1) printf("x[%d] = %d\n", idx, x[idx]);
+			else puts("존재하지 않는 값이네요..");
 			break;
 		}
-		puts("정렬이 완료되었습니다..");
+		case BINARY:
+		{
+			puts("이진 검색을 하려면 먼저 배열을 정렬해야 합니다..");
 
-		printf("검색할 값? ");
-		scanf_s("%d", &key);
-		idx = bin_search_p(x, nx, key);
+			SORT_MENU sm;
+			switch (sm = sort_menu()) {
+			case BUBBLE:
+				bubble_sort_p(x, nx);
+				break;
+			case SELECTION:
+				selection_sort_p(x, nx);
+				break;
+			case INSERTION:
+				insertion_sort_p(x, nx);
+				break;
+			case SHELL:
+				Shell_sort_p(x, nx);
+				break;
+			}
+			puts("정렬이 완료되었습니다..");
+			puts("[배열 x]");
+			for (int i = 0; i < nx; i++)
+				printf("%d ", x[i]);
+			putchar('\n');
 
-		if (idx != -1) printf("x[%d] = %d\n", idx, x[idx]);
-		else puts("존재하지 않는 값이네요..");
-		break;
-	}
+			printf("검색할 값? ");
+			scanf_s("%d", &key);
+			idx = bin_search_p(x, nx, key);
+
+			if (idx != -1) printf("x[%d] = %d\n", idx, x[idx]);
+			else puts("존재하지 않는 값이네요..");
+			break;
+		}
+		}
 	}
 
 }

@@ -3,5 +3,5 @@
 
 
 int main() {
-	sort_project();
+	shell_sort_test();
 }
