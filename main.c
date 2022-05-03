@@ -3,5 +3,5 @@
 
 
 int main() {
-	selection_sort_test();
+	sort_project();
 }
