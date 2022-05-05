@@ -3,5 +3,5 @@
 
 
 int main() {
-	f_backup();
+	mergeSort_test();
 }

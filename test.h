@@ -13,5 +13,7 @@ void selection_sort_test();
 void insertSort_test();
 void sort_project();
 void shell_sort_test();
+void qSort_test();
+void mergeSort_test();
 
 #endif
