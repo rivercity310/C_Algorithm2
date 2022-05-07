@@ -1,7 +1,9 @@
 #ifndef __SORT_H
 #define __SORT_H
 
-static void prt_arr(const int a[], int n);
+void prt_arr(const int a[], int n);
+void histo(int n);
+
 static int* memalloc(int n);
 static void Sort(void(*fp)(int*, int), int ch);
 

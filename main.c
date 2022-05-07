@@ -2,5 +2,5 @@
 #include "test.h"
 
 int main() {
-	Sort_Test();
+	Eight_Queen();
 }

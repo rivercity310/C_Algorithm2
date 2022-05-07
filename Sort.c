@@ -10,6 +10,15 @@
 
 static int* bf;
 
+void prt_arr(const int a[], int n) {
+	int counter = 0;
+	for (int i = 0; i < n; i++) {
+		printf("%-4d ", a[i]);
+		if (++counter % 10 == 0) putchar('\n');
+	}
+	putchar('\n');
+}
+
 static int* memalloc(int n) {
 	srand(time(NULL));
 
@@ -22,15 +31,6 @@ static int* memalloc(int n) {
 		bf[i] = x[i];
 
 	return x;
-}
-
-static void prt_arr(const int a[], int n) {
-	int counter = 0;
-	for (int i = 0; i < n; i++) {
-		printf("%4d ", a[i]);
-		if (++counter % 10 == 0) putchar('\n');
-	}
-	putchar('\n');
 }
 
 static void histo(int n) {
@@ -61,6 +61,9 @@ static void Sort(void(*fp)(int*, int), int ch) {
 	prt_arr(x, nx);
 
 	histo(nx);
+	
+	free(x);
+	free(bf);
 }
 
 // =========================================================================
@@ -282,5 +285,5 @@ int merge_sort(int a[], int n) {
 // =========================================================================
 
 void Sort_Test() {
-	Sort(merge_sort, 0);
+	Sort(quick_sort, 1);
 }
