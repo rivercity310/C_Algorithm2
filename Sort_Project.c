@@ -99,7 +99,7 @@ void Shell_sort_p(int a[], int n) {
 	}
 }
 
-int sch_menu() {
+SHC_MENU sch_menu() {
 	puts("검색을 시작합니다..");
 	puts("어떤 방법으로 검색할까요?");
 
@@ -110,7 +110,7 @@ int sch_menu() {
 	return (SHC_MENU)s;
 }
 
-int sort_menu() {
+SORT_MENU sort_menu() {
 	puts("어떤 방법으로 정렬할까요?");
 	
 	int s;
@@ -172,7 +172,7 @@ void sort_project() {
 				break;
 			case SHELL:
 				Shell_sort_p(x, nx);
-				break;
+				break; 
 			}
 			puts("정렬이 완료되었습니다..");
 			puts("[배열 x]");
