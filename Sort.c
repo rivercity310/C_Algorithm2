@@ -24,7 +24,7 @@ static int* memalloc(int n) {
 
 	int* x = (int*)malloc(sizeof(int) * n);
 	for (int i = 0; i < n; i++)
-		*(x + i) = rand() % RINT;
+		if ((x + i) != NULL) *(x + i) = rand() % RINT;
 
 	bf = (int*)malloc(sizeof(int) * n);
 	for (int i = 0; i < n; i++)

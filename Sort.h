@@ -21,4 +21,6 @@ void shell_sort2(int a[], int n);
 
 void quick_sort(int a[], int left, int right);
 int merge_sort(int a[], int n);
+
+void struct_ary();
 #endif
