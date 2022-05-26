@@ -2,5 +2,5 @@
 #include "test.h"
 
 int main() {
-	struct_ary();
+	lk_test();
 }
