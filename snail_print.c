@@ -13,19 +13,24 @@ static int** x;
 (-1, -1) => Á¾·á
 */
 
-void snail(int row, int col, int len, int cnt, int op, bool toRight, bool isUp) {
+void snail(int n, bool toRight, bool isUp) {
+	int op = 1;
+	int cnt = isUp ? 0 : (n * n) + 1;
+	int row = toRight ? 0 : -1;
+	int col = toRight ? -1 : 0;
+
 	if (toRight) {
 		while (1) {
 
-			for (int i = 0; i < len; i++) {
+			for (int i = 0; i < n; i++) {
 				col += op;
 				if (isUp) *(*(x + row) + col) = ++cnt;
 				else *(*(x + row) + col) = --cnt;
 			}
 
-			if (--len == 0) break;
+			if (--n == 0) break;
 
-			for (int i = 0; i < len; i++) {
+			for (int i = 0; i < n; i++) {
 				row += op;
 				if (isUp) *(*(x + row) + col) = ++cnt;
 				else *(*(x + row) + col) = --cnt;
@@ -36,15 +41,15 @@ void snail(int row, int col, int len, int cnt, int op, bool toRight, bool isUp) 
 	}
 	else {
 		while (1) {
-			for (int i = 0; i < len; i++) {
+			for (int i = 0; i < n; i++) {
 				row += op;
 				if (isUp) *(*(x + row) + col) = ++cnt;
 				else *(*(x + row) + col) = --cnt;
 			}
 
-			if (--len == 0) break;
+			if (--n == 0) break;
 
-			for (int i = 0; i < len; i++) {
+			for (int i = 0; i < n; i++) {
 				col += op;
 				if (isUp) *(*(x + row) + col) = ++cnt;
 				else *(*(x + row) + col) = --cnt;
@@ -76,22 +81,11 @@ void snail_print() {
 		scanf_s("%d", &scaleUp);
 
 		if (direction == -1 && scaleUp == -1) break;
-
-		int op = 1;
-
-		bool toRight = direction > 0;
-		int row = toRight ? 0 : -1;
-		int col = toRight ? -1 : 0;
-		
-		bool isUp = scaleUp > 0;
-		int cnt = isUp ? 0 : (n * n) + 1;
-
-		snail(row, col, n, cnt, op, toRight, isUp);
+		snail(n, direction, scaleUp);
 
 		for (int i = 0; i < n; i++) {
-			for (int j = 0; j < n; j++) {
+			for (int j = 0; j < n; j++) 
 				printf("%-5d", x[i][j]);
-			}
 			putchar('\n');
 		}
 	}
