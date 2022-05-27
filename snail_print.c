@@ -1,37 +1,104 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
+
+static int** x;
+
+/*
+(toRight, isUp)
+(1, 1) => 1부터 오른쪽 방향으로 ++ 시작
+(1, 0) => n^2부터 오른쪽 방향으로 -- 시작
+(0, 1) => 1부터 아래 방향으로 ++ 시작
+(0, 0) => n^2부터 아래 방향으로 -- 시작
+(-1, -1) => 종료
+*/
+
+void snail(int row, int col, int len, int cnt, int op, bool toRight, bool isUp) {
+	if (toRight) {
+		while (1) {
+
+			for (int i = 0; i < len; i++) {
+				col += op;
+				if (isUp) *(*(x + row) + col) = ++cnt;
+				else *(*(x + row) + col) = --cnt;
+			}
+
+			if (--len == 0) break;
+
+			for (int i = 0; i < len; i++) {
+				row += op;
+				if (isUp) *(*(x + row) + col) = ++cnt;
+				else *(*(x + row) + col) = --cnt;
+			}
+
+			op *= -1;
+		}
+	}
+	else {
+		while (1) {
+			for (int i = 0; i < len; i++) {
+				row += op;
+				if (isUp) *(*(x + row) + col) = ++cnt;
+				else *(*(x + row) + col) = --cnt;
+			}
+
+			if (--len == 0) break;
+
+			for (int i = 0; i < len; i++) {
+				col += op;
+				if (isUp) *(*(x + row) + col) = ++cnt;
+				else *(*(x + row) + col) = --cnt;
+			}
+
+			op *= -1;
+		}
+	}
+}
 
 void snail_print() {
-	int num;
-	printf("정수? (MAX=20) ");
-	scanf_s("%d", &num);
-	
-	int arr[20][20] = { 0 };
-	int row = 0;
-	int col = -1;
-	int len = num;
-	int op = 1;
-	int cnt = 0;
+	int n;
+	printf("N? ");
+	scanf_s("%d", &n);
+
+	if ((x = (int**)malloc(sizeof(int*) * n)) != NULL) {
+		for (int i = 0; i < n; i++) {
+			*(x + i) = (int*)malloc(sizeof(int) * n);
+		}
+	}
 
 	while (1) {
-		for (int i = 0; i < len; i++) {
-			col += op;
-			arr[row][col] = ++cnt;
+		int direction;
+		printf("방향? (1/0) ");
+		scanf_s("%d", &direction);
+
+		int scaleUp;
+		printf("크기? (1/0) ");
+		scanf_s("%d", &scaleUp);
+
+		if (direction == -1 && scaleUp == -1) break;
+
+		int op = 1;
+
+		bool toRight = direction > 0;
+		int row = toRight ? 0 : -1;
+		int col = toRight ? -1 : 0;
+		
+		bool isUp = scaleUp > 0;
+		int cnt = isUp ? 0 : (n * n) + 1;
+
+		snail(row, col, n, cnt, op, toRight, isUp);
+
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < n; j++) {
+				printf("%-5d", x[i][j]);
+			}
+			putchar('\n');
 		}
-
-		if (--len == 0) break;
-
-		for (int i = 0; i < len; i++) {
-			row += op;
-			arr[row][col] = ++cnt;
-		}
-
-		op *= -1;
 	}
+	
 
-	for (int i = 0; i < num; i++) {
-		for (int j = 0; j < num; j++)
-			printf("%-5d", arr[i][j]);
-		putchar('\n');
-	}
+	for (int i = 0; i < n; i++)
+		if(*(x + i) != NULL)
+			free(*(x + i));
+	free(x);
 }
