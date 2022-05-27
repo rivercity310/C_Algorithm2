@@ -9,4 +9,6 @@ void lk_test();
 
 void f_test();
 
+void snail_print();
+
 #endif
