@@ -10,5 +10,8 @@ void lk_test();
 void f_test();
 
 void snail_print();
+void reserve();
+void shuffle();
+void grades();
 
 #endif

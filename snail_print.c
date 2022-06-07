@@ -92,7 +92,13 @@ void snail_print() {
 	
 
 	for (int i = 0; i < n; i++)
-		if(*(x + i) != NULL)
+		if (*(x + i) != NULL) {
+			printf("*(x + %d) 皋葛府 秦力, 林家 = %p\n", i, *(x + i));
 			free(*(x + i));
-	free(x);
+		}
+	
+	if (x != NULL) {
+		printf("x 皋葛府 秦力, 林家 = %p\n", x);
+		free(x);
+	}
 }

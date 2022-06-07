@@ -3,5 +3,5 @@
 #include "test.h"
 
 int main() {
-	snail_print();
+	grades();
 }

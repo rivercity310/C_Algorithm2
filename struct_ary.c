@@ -55,4 +55,10 @@ void struct_ary() {
 	printf("[[products狼 林家 = %p]]\n", &products);
 	for (int i = 0; i < counter; i++)
 		print_address(products[i]);
+
+	for (int i = 0; i < counter; i++)
+		if (products[i] != NULL) {
+			printf("products[%d] 皋葛府 秦力\n", i);
+			free(products[i]);
+		}
 }
