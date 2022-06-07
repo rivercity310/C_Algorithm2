@@ -93,7 +93,7 @@ void grades() {
 		printf("%d\t%d\t%d\t%d\t%d\n", tmp->midterm_test, tmp->final_test, tmp->team_play, tmp->attendence, total);
 
 		ave[0] += tmp->midterm_test;
-		ave[1] +z= tmp->final_test;
+		ave[1] += tmp->final_test;
 		ave[2] += tmp->team_play;
 		ave[3] += tmp->attendence;
 		ave[4] += total;
@@ -107,6 +107,8 @@ void grades() {
 	}
 	putchar('\n');
 }
+
+
 
 
 

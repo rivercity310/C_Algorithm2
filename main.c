@@ -3,5 +3,5 @@
 #include "test.h"
 
 int main() {
-	grades();
+	string_ex7();
 }
