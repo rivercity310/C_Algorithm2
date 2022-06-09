@@ -130,6 +130,22 @@ void rotate_str(char* a, int size, int r) {
 	}
 }
 
+void rotate_str2(char* str, int size, int r) {
+	char buf[30];
+	int cnt = 0;
+	int k = 0;
+	for (int i = r; i < size; i++)
+		buf[cnt++] = str[i];
+	
+	for (int i = size; i < size + r; i++)
+		buf[cnt++] = str[k++];
+
+	buf[cnt++] = NULL;
+
+	for (int i = 0; i < cnt; i++)
+		str[i] = buf[i];
+}
+
 void string_ex11() {
 	char str[30];
 	printf("¹®ÀÚ¿­? ");
@@ -141,7 +157,7 @@ void string_ex11() {
 		scanf_s("%d", &r);
 		if (r == 0) break;
 
-		rotate_str(str, strlen(str), r);
+		rotate_str2(str, strlen(str), r);
 		puts(str);
 	}
 }

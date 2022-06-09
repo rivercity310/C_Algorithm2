@@ -41,5 +41,5 @@ void s_print() {
 }
 
 int main() {
-	struct_ex11();
+	struct_ex12();
 }

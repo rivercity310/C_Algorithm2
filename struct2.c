@@ -58,12 +58,39 @@ void struct_ex11() {
 
 		p->cfi = prt_Cf();
 		while (getchar() != '\n');
-
 	}
 
 	p = songs;
 	prt_songs(p);
-	free(songs);
 
+	while (1) {
+		p = songs;
+		char keywords[10];
+		printf("키워드(제목/아티스트)? ");
+		scanf_s("%s", keywords, (unsigned int)sizeof(keywords));
+		if (strcmp(keywords, ".") == 0) break;
 
+		char buf[100];
+		sprintf_s(buf, sizeof(buf), "%20s%20s%20s", "제목", "가수", "장르");
+		puts(buf);
+		for (int i = 0; i < SIZE; i++, p++) {
+			if (strstr(p->artist, keywords) || strstr(p->title, keywords)) {
+				char cfstr[10];
+				switch (p->cfi) {
+				case Ballad: strcpy_s(cfstr, 10, "ballad"); break;
+				case HipHop: strcpy_s(cfstr, 10, "hip-hop"); break;
+				case Soul: strcpy_s(cfstr, 10, "soul"); break;
+				case Dance: strcpy_s(cfstr, 10, "dance"); break;
+				case Pop: strcpy_s(cfstr, 10, "pop"); break;
+				}
+
+				sprintf_s(buf, sizeof(buf), "%20s%20s%20s", p->title, p->artist, cfstr);
+				puts(buf);
+			}
+		}
+
+	}
+
+	if (songs != NULL) free(songs);
+	p = NULL;
 }

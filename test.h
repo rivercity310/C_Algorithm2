@@ -28,5 +28,6 @@ void string_ex11();
 
 void struct_ex10();
 void struct_ex11();
+void struct_ex12();
 
 #endif
