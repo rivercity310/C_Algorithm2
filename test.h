@@ -21,5 +21,12 @@ void string_ex3();
 void string_ex5();
 void string_ex6();
 void string_ex7();
+void string_ex8();
+void string_ex9();
+void string_ex10();
+void string_ex11();
+
+void struct_ex10();
+void struct_ex11();
 
 #endif
