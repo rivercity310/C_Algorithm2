@@ -41,5 +41,5 @@ void s_print() {
 }
 
 int main() {
-	struct_ex12();
+	dmem3_ex7();
 }

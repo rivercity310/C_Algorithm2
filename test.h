@@ -30,4 +30,10 @@ void struct_ex10();
 void struct_ex11();
 void struct_ex12();
 
+void ex7_406();
+void ex8_406();
+
+void dmem_ex4();
+void dmem3_ex7();
+
 #endif
